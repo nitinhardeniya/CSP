@@ -21,28 +21,30 @@ class HousePaint(object):
         self.costs_of_green=[costs_of_green]*self.n
         self.min=[]
         
-    def minimum_cost_paint(self):
-        
+
+
+    def min_cost(self):
+
         i=1
-        
         r =[0]*self.n
         b=[0]*self.n
         g=[0]*self.n
 
         #Initalize 
-        r[0]=self.costs_of_red[0]
         b[0]=self.costs_of_blue[0]
         g[0] = self.costs_of_green[0]
+        
         while i < self.n:
-            r[i] = self.costs_of_red[i] + min(b[i-1], g[i-1])
-            b[i] = self.costs_of_blue[i] + min(r[i-1], g[i-1])
-            g[i] = self.costs_of_green[i] + min(b[i-1], r[i-1])
-            logging.info(r)
+
+            b[i] =  g[i-1]
+            g[i] =  b[i-1]
+            #logging.info(r)
             logging.info(b)
             logging.info(g)
             i += 1
-        self.min=min(r,b,g)
-        return min(r,b,g)
+        self.min=g,b
+        return g,b
+
 
     def display(self):
         res=[]
@@ -81,5 +83,6 @@ if __name__ == "__main__":
     costs_of_green=int(sys.argv[4])
     #h=HousePaint(4,4,3,2)
     h=HousePaint(no_of_house,costs_of_red,costs_of_blue,costs_of_green)
-    print h.minimum_cost_paint()
-    h.display()
+    #print h.minimum_cost_paint()
+    print h.min_cost()
+    #h.display()
