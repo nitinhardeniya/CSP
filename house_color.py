@@ -42,8 +42,8 @@ class HousePaint(object):
             logging.info(b)
             logging.info(g)
             i += 1
-        self.min=g,b
-        return g,b
+        #self.min=g,b
+        return g
 
 
     def display(self):
